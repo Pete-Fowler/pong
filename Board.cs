@@ -21,6 +21,9 @@ public static class Board
     public static void DrawPaddles()
     {
         Console.SetCursorPosition(1, HEIGHT / 2 + 1);
-        Console.Write(paddle);
+        for (int i = 0; i < 5; i++)
+        {
+            Console.WriteLine(paddle);
+        }
     }
 }
