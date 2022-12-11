@@ -6,6 +6,8 @@ public static class Board
 
     private static string verticalLines = "#" + new String(char.Parse(" "), WIDTH - 2) + "#";
 
+    private static string paddle = "|";
+
     public static void DrawBoundary()
     {
         Console.WriteLine(horizontalLine);
@@ -16,5 +18,9 @@ public static class Board
         Console.WriteLine(horizontalLine);
     }
 
-    public static void DrawPaddles() { }
+    public static void DrawPaddles()
+    {
+        Console.SetCursorPosition(1, HEIGHT / 2 + 1);
+        Console.Write(paddle);
+    }
 }
