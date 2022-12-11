@@ -4,7 +4,7 @@ public static class Board
     private const int HEIGHT = 30;
     private static string line = new String(char.Parse("#"), WIDTH);
 
-    public static void Draw()
+    public static void DrawBoundary()
     {
         Console.WriteLine(line);
         for (int i = 0; i < HEIGHT; i++)

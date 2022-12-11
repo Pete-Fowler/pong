@@ -2,6 +2,6 @@
 {
     public static void Main()
     {
-        Board.Draw();
+        Board.DrawBoundary();
     }
 }
