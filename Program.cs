@@ -3,6 +3,7 @@
     public static void Main()
     {
         Board.DrawBoundary();
-        Board.DrawPaddles();
+        Board.DrawPaddleLeft();
+        Board.DrawPaddleRight();
     }
 }
