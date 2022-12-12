@@ -24,29 +24,16 @@ public static class Board
         Console.WriteLine(horizontalLine);
     }
 
-    public static void DrawPaddleLeft()
+    public static void DrawPaddles()
     {
         int x = Console.CursorLeft;
         int y = Console.CursorTop;
-        Console.SetCursorPosition(1, leftPaddleHeight);
-        for (int i = 1; i <= 5; i++)
+        for (int i = 0; i <= 4; i++)
         {
-            Console.WriteLine(paddle);
             Console.SetCursorPosition(1, leftPaddleHeight + i);
-        }
-        Console.SetCursorPosition(x, y);
-    }
-
-    public static void DrawPaddleRight()
-    {
-        int x = Console.CursorLeft;
-        int y = Console.CursorTop;
-
-        Console.SetCursorPosition(WIDTH - 2, rightPaddleHeight);
-        for (int i = 1; i <= 5; i++)
-        {
             Console.WriteLine(paddle);
             Console.SetCursorPosition(WIDTH - 2, rightPaddleHeight + i);
+            Console.WriteLine(paddle);
         }
         Console.SetCursorPosition(x, y);
     }

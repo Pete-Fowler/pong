@@ -6,10 +6,10 @@ public static class GameLoop
 
         Board.DrawBoundary();
 
-        while (true)
+        bool gameRunning = true;
+        while (gameRunning)
         {
-            Board.DrawPaddleLeft();
-            Board.DrawPaddleRight();
+            Board.DrawPaddles();
 
             Board.HandleMovement();
         }
