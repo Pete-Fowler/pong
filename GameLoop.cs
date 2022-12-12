@@ -6,6 +6,6 @@ public static class GameLoop
         Board.DrawPaddleLeft();
         Board.DrawPaddleRight();
 
-        Board.ListenForKey();
+        Board.HandleMovement();
     }
 }

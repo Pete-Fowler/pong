@@ -53,15 +53,32 @@ public static class Board
     {
         while (!Console.KeyAvailable) { }
 
-        switch (Console.ReadKey().Key) {
-          case ConsoleKey.P {
-            if(rightPaddleHeight > 0) {
-              rightPaddleHeight--;
-            }
-            break;
-          }
-
-          }
-         }
-    
+        switch (Console.ReadKey(false).Key)
+        {
+            case ConsoleKey.P:
+                if (rightPaddleHeight > 0)
+                {
+                    rightPaddleHeight--;
+                }
+                break;
+            case ConsoleKey.L:
+                if (rightPaddleHeight < HEIGHT)
+                {
+                    rightPaddleHeight++;
+                }
+                break;
+            case ConsoleKey.Q:
+                if (leftPaddleHeight > 0)
+                {
+                    leftPaddleHeight--;
+                }
+                break;
+            case ConsoleKey.A:
+                if (leftPaddleHeight < HEIGHT)
+                {
+                    leftPaddleHeight++;
+                }
+                break;
+        }
+    }
 }
