@@ -2,7 +2,7 @@ public static class GameLoop
 {
     public static void Run()
     {
-        IntroText();
+        // IntroText();
 
         Board.DrawBoundary();
 

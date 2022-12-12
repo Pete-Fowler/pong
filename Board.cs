@@ -19,7 +19,7 @@ public static class Board
         for (int i = 0; i < HEIGHT; i++)
         {
             Console.WriteLine(verticalLines);
-            Thread.Sleep(75);
+            Thread.Sleep(50);
         }
         Console.WriteLine(horizontalLine);
     }
@@ -68,6 +68,13 @@ public static class Board
                     leftPaddleHeight++;
                 }
                 break;
+        }
+        for (int i = 1; i < HEIGHT - 2; i++)
+        {
+            Console.SetCursorPosition(1, i);
+            Console.WriteLine(" ");
+            Console.SetCursorPosition(WIDTH - 2, i);
+            Console.WriteLine(" ");
         }
     }
 }
