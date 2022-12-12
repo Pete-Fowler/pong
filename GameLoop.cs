@@ -5,5 +5,7 @@ public static class GameLoop
         Board.DrawBoundary();
         Board.DrawPaddleLeft();
         Board.DrawPaddleRight();
+
+        Board.ListenForKey();
     }
 }

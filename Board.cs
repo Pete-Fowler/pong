@@ -8,6 +8,10 @@ public static class Board
 
     private static string paddle = "|";
 
+    private static int leftPaddleHeight = HEIGHT / 2 + 1;
+
+    private static int rightPaddleHeight = HEIGHT / 2 + 1;
+
     public static void DrawBoundary()
     {
         Console.WriteLine(horizontalLine);
@@ -22,11 +26,11 @@ public static class Board
     {
         int x = Console.CursorLeft;
         int y = Console.CursorTop;
-        Console.SetCursorPosition(1, HEIGHT / 2 + 1);
+        Console.SetCursorPosition(1, leftPaddleHeight);
         for (int i = 1; i <= 5; i++)
         {
             Console.WriteLine(paddle);
-            Console.SetCursorPosition(1, HEIGHT / 2 + 1 + i);
+            Console.SetCursorPosition(1, leftPaddleHeight + i);
         }
         Console.SetCursorPosition(x, y);
     }
@@ -36,12 +40,28 @@ public static class Board
         int x = Console.CursorLeft;
         int y = Console.CursorTop;
 
-        Console.SetCursorPosition(WIDTH - 2, HEIGHT / 2 + 1);
+        Console.SetCursorPosition(WIDTH - 2, rightPaddleHeight);
         for (int i = 1; i <= 5; i++)
         {
             Console.WriteLine(paddle);
-            Console.SetCursorPosition(WIDTH - 2, HEIGHT / 2 + 1 + i);
+            Console.SetCursorPosition(WIDTH - 2, rightPaddleHeight + i);
         }
         Console.SetCursorPosition(x, y);
     }
+
+    public static void HandleMovement()
+    {
+        while (!Console.KeyAvailable) { }
+
+        switch (Console.ReadKey().Key) {
+          case ConsoleKey.P {
+            if(rightPaddleHeight > 0) {
+              rightPaddleHeight--;
+            }
+            break;
+          }
+
+          }
+         }
+    
 }
