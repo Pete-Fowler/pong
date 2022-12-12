@@ -1,9 +1,10 @@
 public static class GameLoop
 {
-    public static async void Run()
+    public static void Run()
     {
+        IntroText();
+
         Board.DrawBoundary();
-        await IntroText();
 
         while (true)
         {
@@ -14,10 +15,10 @@ public static class GameLoop
         }
     }
 
-    public static async Task IntroText()
+    public static void IntroText()
     {
         Console.Write("Welcome to ");
-        Thread.Sleep(500);
+        Thread.Sleep(750);
 
         Console.Write("P");
         Thread.Sleep(750);
@@ -33,8 +34,10 @@ public static class GameLoop
 
         Console.WriteLine(" ");
 
-        Console.WriteLine("Left player moves up/down with q/a buttons ...");
-        Console.WriteLine("Right player moves up/down with p/l buttons ...");
-        Console.WriteLine("Press ESC to end game.");
+        Console.WriteLine("Left player use Q + A ...");
+        Console.WriteLine("Right player use P + L ...");
+        Console.WriteLine("Press Ctrl + C to end game.");
+
+        Thread.Sleep(2500);
     }
 }

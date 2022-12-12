@@ -15,9 +15,11 @@ public static class Board
     public static void DrawBoundary()
     {
         Console.WriteLine(horizontalLine);
+        Thread.Sleep(100);
         for (int i = 0; i < HEIGHT; i++)
         {
             Console.WriteLine(verticalLines);
+            Thread.Sleep(75);
         }
         Console.WriteLine(horizontalLine);
     }
