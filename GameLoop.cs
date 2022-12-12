@@ -2,10 +2,15 @@ public static class GameLoop
 {
     public static void Run()
     {
+      
         Board.DrawBoundary();
-        Board.DrawPaddleLeft();
-        Board.DrawPaddleRight();
 
-        Board.HandleMovement();
+        while (true)
+        {
+            Board.DrawPaddleLeft();
+            Board.DrawPaddleRight();
+
+            Board.HandleMovement();
+        }
     }
 }
