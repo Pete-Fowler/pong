@@ -69,7 +69,7 @@ public static class Board
                 }
                 break;
         }
-        for (int i = 1; i < HEIGHT - 2; i++)
+        for (int i = 1; i < HEIGHT + 1; i++)
         {
             Console.SetCursorPosition(1, i);
             Console.WriteLine(" ");
