@@ -58,70 +58,9 @@ public static class Board
         Console.CursorVisible = false;
         while (!Console.KeyAvailable)
         {
-            Console.SetCursorPosition(ballX, ballY);
-            Console.Write(ballTile);
-            Thread.Sleep(ballSpeed);
-            Console.SetCursorPosition(ballX, ballY);
-            Console.Write(" ");
+            DrawBall();
 
-            if (isBallGoingDown)
-            {
-                if (ballY < HEIGHT)
-                {
-                    ballY++;
-                }
-                else if (ballY == HEIGHT)
-                {
-                    isBallGoingDown = !isBallGoingDown;
-                }
-            }
-            else if (!isBallGoingDown)
-            {
-                if (ballY > 1)
-                {
-                    ballY--;
-                }
-                else if (ballY == 1)
-                {
-                    isBallGoingDown = !isBallGoingDown;
-                }
-            }
-            if (isBallGoingRight)
-            {
-                if (ballX < WIDTH - 3)
-                {
-                    ballX++;
-                }
-                else if (ballX == WIDTH - 3)
-                {
-                    if (rightPaddleHeight <= ballY && ballY <= rightPaddleHeight + 5)
-                    {
-                        isBallGoingRight = !isBallGoingRight;
-                    }
-                    else
-                    {
-                        Goal("Left");
-                    }
-                }
-            }
-            else if (!isBallGoingRight)
-            {
-                if (ballX > 2)
-                {
-                    ballX--;
-                }
-                else if (ballX == 2)
-                {
-                    if (leftPaddleHeight <= ballY && ballY <= leftPaddleHeight + 5)
-                    {
-                        isBallGoingRight = !isBallGoingRight;
-                    }
-                    else
-                    {
-                        Goal("Right");
-                    }
-                }
-            }
+            handleBallAtBorders();
         }
 
         switch (Console.ReadKey(true).Key)
@@ -157,6 +96,77 @@ public static class Board
             Console.WriteLine(" ");
             Console.SetCursorPosition(WIDTH - 2, i);
             Console.WriteLine(" ");
+        }
+    }
+
+    private static void DrawBall()
+    {
+        Console.SetCursorPosition(ballX, ballY);
+        Console.Write(ballTile);
+        Thread.Sleep(ballSpeed);
+        Console.SetCursorPosition(ballX, ballY);
+        Console.Write(" ");
+    }
+
+    private static void handleBallAtBorders()
+    {
+        if (isBallGoingDown)
+        {
+            if (ballY < HEIGHT)
+            {
+                ballY++;
+            }
+            else if (ballY == HEIGHT)
+            {
+                isBallGoingDown = !isBallGoingDown;
+            }
+        }
+        else if (!isBallGoingDown)
+        {
+            if (ballY > 1)
+            {
+                ballY--;
+            }
+            else if (ballY == 1)
+            {
+                isBallGoingDown = !isBallGoingDown;
+            }
+        }
+        if (isBallGoingRight)
+        {
+            if (ballX < WIDTH - 3)
+            {
+                ballX++;
+            }
+            else if (ballX == WIDTH - 3)
+            {
+                if (rightPaddleHeight <= ballY && ballY <= rightPaddleHeight + 5)
+                {
+                    isBallGoingRight = !isBallGoingRight;
+                }
+                else
+                {
+                    Goal("Left");
+                }
+            }
+        }
+        else if (!isBallGoingRight)
+        {
+            if (ballX > 2)
+            {
+                ballX--;
+            }
+            else if (ballX == 2)
+            {
+                if (leftPaddleHeight <= ballY && ballY <= leftPaddleHeight + 5)
+                {
+                    isBallGoingRight = !isBallGoingRight;
+                }
+                else
+                {
+                    Goal("Right");
+                }
+            }
         }
     }
 }
