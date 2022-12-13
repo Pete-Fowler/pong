@@ -8,9 +8,9 @@ public static class Board
 
     private static string paddle = "|";
 
-    private static int leftPaddleHeight = HEIGHT / 2 + 1;
+    private static int leftPaddleHeight = HEIGHT / 2 - 2;
 
-    private static int rightPaddleHeight = HEIGHT / 2 + 1;
+    private static int rightPaddleHeight = HEIGHT / 2 - 2;
 
     public static void DrawBoundary()
     {
@@ -40,9 +40,10 @@ public static class Board
 
     public static void HandleMovement()
     {
+        Console.CursorVisible = false;
         while (!Console.KeyAvailable) { }
 
-        switch (Console.ReadKey(false).Key)
+        switch (Console.ReadKey(true).Key)
         {
             case ConsoleKey.P:
                 if (rightPaddleHeight > 1)
