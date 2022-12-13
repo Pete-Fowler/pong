@@ -12,6 +12,13 @@ public static class Board
 
     private static int rightPaddleHeight = HEIGHT / 2 - 2;
 
+    int ballX = fieldLength / 2;
+    int ballY = fieldWidth / 2;
+    const char ballTile = 'O';
+
+    bool isBallGoingDown = true;
+    bool isBallGoingRight = true;
+
     public static void DrawBoundary()
     {
         Console.WriteLine(horizontalLine);
@@ -41,7 +48,18 @@ public static class Board
     public static void HandleMovement()
     {
         Console.CursorVisible = false;
-        while (!Console.KeyAvailable) { }
+        while (!Console.KeyAvailable) {
+            Console.SetCursorPosition(ballX, ballY);
+            Console.Write(ballTile);
+            Thread.Sleep(100);
+            Console.SetCursorPosition(ballX, ballY);
+            Console.Write(" ");
+
+            if(isBallGoingDown)
+            {
+
+            }
+        }
 
         switch (Console.ReadKey(true).Key)
         {
