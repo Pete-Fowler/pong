@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 public static class Board
 {
     private const int WIDTH = 125;
@@ -12,12 +14,13 @@ public static class Board
 
     private static int rightPaddleHeight = HEIGHT / 2 - 2;
 
-    int ballX = fieldLength / 2;
-    int ballY = fieldWidth / 2;
-    const char ballTile = 'O';
+    private static int ballX = WIDTH / 2;
+    private static int ballY = HEIGHT / 2;
+    private const char ballTile = 'O';
+    private static int ballSpeed = 100;
 
-    bool isBallGoingDown = true;
-    bool isBallGoingRight = true;
+    private static bool isBallGoingDown = true;
+    private static bool isBallGoingRight = true;
 
     public static void DrawBoundary()
     {
@@ -45,19 +48,65 @@ public static class Board
         Console.SetCursorPosition(x, y);
     }
 
+    public static void Goal(string side)
+    {
+        Console.WriteLine($"{side} player GOAL");
+    }
+
     public static void HandleMovement()
     {
         Console.CursorVisible = false;
-        while (!Console.KeyAvailable) {
+        while (!Console.KeyAvailable)
+        {
             Console.SetCursorPosition(ballX, ballY);
             Console.Write(ballTile);
-            Thread.Sleep(100);
+            Thread.Sleep(ballSpeed);
             Console.SetCursorPosition(ballX, ballY);
             Console.Write(" ");
 
-            if(isBallGoingDown)
+            if (isBallGoingDown)
             {
-
+                if (ballY < HEIGHT - 1)
+                {
+                    ballY++;
+                }
+                else if (ballY == HEIGHT - 1)
+                {
+                    isBallGoingDown = !isBallGoingDown;
+                }
+            }
+            else if (!isBallGoingDown)
+            {
+                if (ballY > 2)
+                {
+                    ballY--;
+                }
+                else if (ballY == 1)
+                {
+                    isBallGoingDown = !isBallGoingDown;
+                }
+            }
+            if (isBallGoingRight)
+            {
+                if (ballX < WIDTH - 2)
+                {
+                    ballX++;
+                }
+                else if (ballX == WIDTH - 2)
+                {
+                    Goal("Left");
+                }
+            }
+            else if (!isBallGoingRight)
+            {
+                if (ballX > WIDTH + 1)
+                {
+                    ballX--;
+                }
+                else if (ballX == WIDTH + 1)
+                {
+                    Goal("Right");
+                }
             }
         }
 
