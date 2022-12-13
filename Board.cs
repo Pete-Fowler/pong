@@ -20,7 +20,7 @@ public static class Board
     private static int ballSpeed = 100;
 
     private static bool isBallGoingDown = true;
-    private static bool isBallGoingRight = true;
+    private static bool isBallGoingRight = false;
 
     public static void DrawBoundary()
     {
@@ -66,18 +66,18 @@ public static class Board
 
             if (isBallGoingDown)
             {
-                if (ballY < HEIGHT - 1)
+                if (ballY < HEIGHT)
                 {
                     ballY++;
                 }
-                else if (ballY == HEIGHT - 1)
+                else if (ballY == HEIGHT)
                 {
                     isBallGoingDown = !isBallGoingDown;
                 }
             }
             else if (!isBallGoingDown)
             {
-                if (ballY > 2)
+                if (ballY > 1)
                 {
                     ballY--;
                 }
@@ -88,24 +88,38 @@ public static class Board
             }
             if (isBallGoingRight)
             {
-                if (ballX < WIDTH - 2)
+                if (ballX < WIDTH - 3)
                 {
                     ballX++;
                 }
-                else if (ballX == WIDTH - 2)
+                else if (ballX == WIDTH - 3)
                 {
-                    Goal("Left");
+                    if (rightPaddleHeight <= ballY && ballY <= rightPaddleHeight + 5)
+                    {
+                        isBallGoingRight = !isBallGoingRight;
+                    }
+                    else
+                    {
+                        Goal("Left");
+                    }
                 }
             }
             else if (!isBallGoingRight)
             {
-                if (ballX > WIDTH + 1)
+                if (ballX > 2)
                 {
                     ballX--;
                 }
-                else if (ballX == WIDTH + 1)
+                else if (ballX == 2)
                 {
-                    Goal("Right");
+                    if (leftPaddleHeight <= ballY && ballY <= leftPaddleHeight + 5)
+                    {
+                        isBallGoingRight = !isBallGoingRight;
+                    }
+                    else
+                    {
+                        Goal("Right");
+                    }
                 }
             }
         }
