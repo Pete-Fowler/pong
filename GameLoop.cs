@@ -9,8 +9,6 @@ public static class GameLoop
         bool gameRunning = true;
         while (gameRunning)
         {
-            Board.DrawPaddles();
-
             Board.HandleMovement();
         }
     }

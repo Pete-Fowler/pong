@@ -58,9 +58,10 @@ public static class Board
         Console.CursorVisible = false;
         while (!Console.KeyAvailable)
         {
+            DrawPaddles();
             DrawBall();
 
-            handleBallAtBorders();
+            HandleBallAtBorders();
         }
 
         switch (Console.ReadKey(true).Key)
@@ -108,7 +109,7 @@ public static class Board
         Console.Write(" ");
     }
 
-    private static void handleBallAtBorders()
+    private static void HandleBallAtBorders()
     {
         if (isBallGoingDown)
         {
