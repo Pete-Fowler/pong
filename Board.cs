@@ -45,25 +45,25 @@ public static class Board
         switch (Console.ReadKey(false).Key)
         {
             case ConsoleKey.P:
-                if (rightPaddleHeight > 0)
+                if (rightPaddleHeight > 1)
                 {
                     rightPaddleHeight--;
                 }
                 break;
             case ConsoleKey.L:
-                if (rightPaddleHeight < HEIGHT)
+                if (rightPaddleHeight < HEIGHT - 4)
                 {
                     rightPaddleHeight++;
                 }
                 break;
             case ConsoleKey.Q:
-                if (leftPaddleHeight > 0)
+                if (leftPaddleHeight > 1)
                 {
                     leftPaddleHeight--;
                 }
                 break;
             case ConsoleKey.A:
-                if (leftPaddleHeight < HEIGHT)
+                if (leftPaddleHeight < HEIGHT - 4)
                 {
                     leftPaddleHeight++;
                 }
