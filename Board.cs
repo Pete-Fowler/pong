@@ -251,9 +251,8 @@ public static class Board
                 leftScore = 0;
                 rightScore = 0;
 
-                // Fix this clearing of scoreboard
-                Console.SetCursorPosition(0, HEIGHT + 2);
-                Console.WriteLine(" ");
+                string scoreBoard = $"Left Player: {leftScore} | Right Player: {rightScore}";
+                ClearString(scoreBoard, WIDTH / 2 - scoreBoard.Length / 2, HEIGHT + 2);
 
                 ClearPaddles();
                 leftPaddleHeight = HEIGHT / 2 - 2;
