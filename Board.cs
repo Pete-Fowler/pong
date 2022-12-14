@@ -17,7 +17,7 @@ public static class Board
     private static int ballX = WIDTH / 2;
     private static int ballY = HEIGHT / 2;
     private const char ballTile = 'O';
-    private static int ballSpeed = 100;
+    private static int ballSpeed = 30;
 
     private static bool isBallGoingDown = true;
     private static bool isBallGoingRight = false;
@@ -171,16 +171,16 @@ public static class Board
 
         ResetBall();
 
-        ClearString(str);
+        ClearString(str, (WIDTH / 2) - (str.Length / 2), HEIGHT / 2);
 
         running = true;
     }
 
-    private static void ClearString(string str)
+    private static void ClearString(string str, int x, int y)
     {
         for (int i = 0; i < str.Length; i++)
         {
-            Console.SetCursorPosition((WIDTH / 2) - (str.Length / 2) + i, HEIGHT / 2);
+            Console.SetCursorPosition(x + i, y);
             Console.Write(" ");
         }
     }
@@ -240,15 +240,19 @@ public static class Board
 
         string instructions = "Press Y to play again or N to quit...";
         Console.SetCursorPosition((WIDTH / 2) - (instructions.Length / 2), HEIGHT / 2 + 2);
+        Console.Write(instructions);
 
         switch (Console.ReadKey(true).Key)
         {
             case ConsoleKey.Y:
-                ClearString(str);
-                ClearString(instructions);
+                ClearString(str, (WIDTH / 2) - (str.Length / 2), HEIGHT / 2);
+                ClearString(instructions, (WIDTH / 2) - (instructions.Length / 2), HEIGHT / 2 + 2);
                 ResetBall();
                 leftScore = 0;
                 rightScore = 0;
+                leftPaddleHeight = HEIGHT / 2 - 2;
+                rightPaddleHeight = HEIGHT / 2 - 2;
+
                 running = true;
                 break;
 
