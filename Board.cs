@@ -22,6 +22,8 @@ public static class Board
     private static bool isBallGoingDown = true;
     private static bool isBallGoingRight = false;
 
+    private static bool running = true;
+
     public static void DrawBoundary()
     {
         Console.WriteLine(horizontalLine);
@@ -50,14 +52,14 @@ public static class Board
 
     public static void Goal(string side)
     {
-        break;
+        running = false;
         Console.WriteLine($"{side} player GOAL");
     }
 
     public static void HandleMovement()
     {
         Console.CursorVisible = false;
-        while (!Console.KeyAvailable)
+        while (!Console.KeyAvailable && running)
         {
             DrawPaddles();
             DrawBall();
