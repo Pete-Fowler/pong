@@ -50,52 +50,6 @@ public static class Board
         Console.SetCursorPosition(x, y);
     }
 
-    public static void Goal(string side)
-    {
-        running = false;
-        Console.WriteLine($"{side} player GOAL");
-    }
-
-    public static void HandleMovement()
-    {
-        Console.CursorVisible = false;
-        while (!Console.KeyAvailable && running)
-        {
-            DrawPaddles();
-            DrawBall();
-            HandleBallAtBorders();
-        }
-
-        switch (Console.ReadKey(true).Key)
-        {
-            case ConsoleKey.P:
-                if (rightPaddleHeight > 1)
-                {
-                    rightPaddleHeight--;
-                }
-                break;
-            case ConsoleKey.L:
-                if (rightPaddleHeight < HEIGHT - 4)
-                {
-                    rightPaddleHeight++;
-                }
-                break;
-            case ConsoleKey.Q:
-                if (leftPaddleHeight > 1)
-                {
-                    leftPaddleHeight--;
-                }
-                break;
-            case ConsoleKey.A:
-                if (leftPaddleHeight < HEIGHT - 4)
-                {
-                    leftPaddleHeight++;
-                }
-                break;
-        }
-        ClearPaddles();
-    }
-
     private static void ClearPaddles()
     {
         for (int i = 1; i < HEIGHT + 1; i++)
@@ -177,4 +131,54 @@ public static class Board
             }
         }
     }
+
+    public static void Goal(string side)
+    {
+        running = false;
+        var str = $"{side} player GOAL!!!";
+        Console.SetCursorPosition((WIDTH / 2) - (str.Length / 2), HEIGHT / 2);
+        Console.WriteLine(str);
+    }
+
+    public static void HandleMovement()
+    {
+        Console.CursorVisible = false;
+        while (!Console.KeyAvailable && running)
+        {
+            DrawPaddles();
+            DrawBall();
+            HandleBallAtBorders();
+        }
+
+        switch (Console.ReadKey(true).Key)
+        {
+            case ConsoleKey.P:
+                if (rightPaddleHeight > 1)
+                {
+                    rightPaddleHeight--;
+                }
+                break;
+            case ConsoleKey.L:
+                if (rightPaddleHeight < HEIGHT - 4)
+                {
+                    rightPaddleHeight++;
+                }
+                break;
+            case ConsoleKey.Q:
+                if (leftPaddleHeight > 1)
+                {
+                    leftPaddleHeight--;
+                }
+                break;
+            case ConsoleKey.A:
+                if (leftPaddleHeight < HEIGHT - 4)
+                {
+                    leftPaddleHeight++;
+                }
+                break;
+        }
+        ClearPaddles();
+    }
+
+
 }
