@@ -250,6 +250,12 @@ public static class Board
                 ResetBall();
                 leftScore = 0;
                 rightScore = 0;
+
+                // Fix this clearing of scoreboard
+                Console.SetCursorPosition(0, HEIGHT + 2);
+                Console.WriteLine(" ");
+
+                ClearPaddles();
                 leftPaddleHeight = HEIGHT / 2 - 2;
                 rightPaddleHeight = HEIGHT / 2 - 2;
 
