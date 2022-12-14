@@ -263,7 +263,7 @@ public static class Board
                 break;
 
             case ConsoleKey.N:
-                Environment.Exit(-1);
+                Environment.Exit(1);
                 break;
         }
 
