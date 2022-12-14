@@ -50,6 +50,7 @@ public static class Board
 
     public static void Goal(string side)
     {
+        break;
         Console.WriteLine($"{side} player GOAL");
     }
 
@@ -60,7 +61,6 @@ public static class Board
         {
             DrawPaddles();
             DrawBall();
-
             HandleBallAtBorders();
         }
 
@@ -91,6 +91,11 @@ public static class Board
                 }
                 break;
         }
+        ClearPaddles();
+    }
+
+    private static void ClearPaddles()
+    {
         for (int i = 1; i < HEIGHT + 1; i++)
         {
             Console.SetCursorPosition(1, i);
