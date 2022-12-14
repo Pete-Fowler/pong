@@ -17,7 +17,7 @@ public static class Board
     private static int ballX = WIDTH / 2;
     private static int ballY = HEIGHT / 2;
     private const char ballTile = 'O';
-    private static int ballSpeed = 30;
+    private static int ballSpeed = 60;
 
     private static bool isBallGoingDown = true;
     private static bool isBallGoingRight = false;
@@ -82,7 +82,7 @@ public static class Board
             {
                 ballY += ballAngle;
             }
-            else if (ballY == HEIGHT)
+            else if (ballY >= HEIGHT)
             {
                 isBallGoingDown = !isBallGoingDown;
             }
@@ -93,7 +93,7 @@ public static class Board
             {
                 ballY -= ballAngle;
             }
-            else if (ballY == 1)
+            else if (ballY <= 1)
             {
                 isBallGoingDown = !isBallGoingDown;
             }
@@ -109,6 +109,11 @@ public static class Board
                 if (rightPaddleHeight <= ballY && ballY <= rightPaddleHeight + 5)
                 {
                     isBallGoingRight = !isBallGoingRight;
+                    AdjustBallAngle("Right");
+                    if (ballSpeed >= 20)
+                    {
+                        ballSpeed -= 5;
+                    }
                 }
                 else
                 {
@@ -127,12 +132,43 @@ public static class Board
                 if (leftPaddleHeight <= ballY && ballY <= leftPaddleHeight + 5)
                 {
                     isBallGoingRight = !isBallGoingRight;
+                    AdjustBallAngle("Left");
+                    if (ballSpeed >= 20)
+                    {
+                        ballSpeed -= 5;
+                    }
                 }
                 else
                 {
                     Goal("Right");
                 }
             }
+        }
+    }
+
+    private static void AdjustBallAngle(string side)
+    {
+        int paddleHeight = 0;
+        if (side == "Left")
+        {
+            paddleHeight = leftPaddleHeight;
+        }
+        else
+        {
+            paddleHeight = rightPaddleHeight;
+        }
+
+        if (ballY == paddleHeight || ballY == paddleHeight + 5)
+        {
+            ballAngle = 2;
+        }
+        else if (ballY == paddleHeight + 1 || ballY == paddleHeight + 4)
+        {
+            ballAngle = 1;
+        }
+        else if (ballY == paddleHeight + 2)
+        {
+            ballAngle = 0;
         }
     }
 
@@ -190,6 +226,8 @@ public static class Board
     {
         ballX = WIDTH / 2;
         ballY = HEIGHT / 2;
+        ballAngle = 0;
+        ballSpeed = 60;
     }
 
     public static void HandleMovement()
