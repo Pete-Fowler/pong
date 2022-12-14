@@ -22,6 +22,9 @@ public static class Board
     private static bool isBallGoingDown = true;
     private static bool isBallGoingRight = false;
 
+    private static int rightScore = 0;
+    private static int leftScore = 0;
+
     private static bool running = true;
 
     public static void DrawBoundary()
@@ -135,10 +138,40 @@ public static class Board
     public static void Goal(string side)
     {
         running = false;
-        var str = $"{side} player GOAL!!!";
+
+        if (side == "Left")
+        {
+            leftScore++;
+        }
+        else
+        {
+            rightScore++;
+        }
+
+        var str = $"{side} Player GOAL!!!";
+
+
         Console.SetCursorPosition((WIDTH / 2) - (str.Length / 2), HEIGHT / 2);
         Console.WriteLine(str);
+        Thread.Sleep(1000);
+
+        string scoreBoard = $"Left Player: {leftScore} | Right Player: {rightScore}";
+        Console.SetCursorPosition((WIDTH / 2) - (scoreBoard.Length / 2), HEIGHT + 2);
+        Console.WriteLine(scoreBoard);
+        Thread.Sleep(1000);
+        ballX = WIDTH / 2;
+        ballY = HEIGHT / 2;
+
+        for (int i = 0; i < str.Length; i++)
+        {
+            Console.SetCursorPosition((WIDTH / 2) - (str.Length / 2) + i, HEIGHT / 2);
+            Console.Write(" ");
+        }
+
+        running = true;
     }
+
+    // 
 
     public static void HandleMovement()
     {
