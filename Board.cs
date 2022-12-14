@@ -142,14 +142,23 @@ public static class Board
         if (side == "Left")
         {
             leftScore++;
+            if (leftScore == 5)
+            {
+                WinGame("Left");
+                return;
+            }
         }
         else
         {
             rightScore++;
+            if (rightScore == 5)
+            {
+                WinGame("Right");
+                return;
+            }
         }
 
         var str = $"{side} Player GOAL!!!";
-
 
         Console.SetCursorPosition((WIDTH / 2) - (str.Length / 2), HEIGHT / 2);
         Console.WriteLine(str);
@@ -159,19 +168,28 @@ public static class Board
         Console.SetCursorPosition((WIDTH / 2) - (scoreBoard.Length / 2), HEIGHT + 2);
         Console.WriteLine(scoreBoard);
         Thread.Sleep(1000);
-        ballX = WIDTH / 2;
-        ballY = HEIGHT / 2;
 
+        ResetBall();
+
+        ClearString(str);
+
+        running = true;
+    }
+
+    private static void ClearString(string str)
+    {
         for (int i = 0; i < str.Length; i++)
         {
             Console.SetCursorPosition((WIDTH / 2) - (str.Length / 2) + i, HEIGHT / 2);
             Console.Write(" ");
         }
-
-        running = true;
     }
 
-    // 
+    private static void ResetBall()
+    {
+        ballX = WIDTH / 2;
+        ballY = HEIGHT / 2;
+    }
 
     public static void HandleMovement()
     {
@@ -213,5 +231,31 @@ public static class Board
         ClearPaddles();
     }
 
+    private static void WinGame(string side)
+    {
+        string str = $"{side} player is the winner!!!";
+        Console.SetCursorPosition((WIDTH / 2) - (str.Length / 2), HEIGHT / 2);
+        Console.Write(str);
+        Thread.Sleep(2000);
 
+        string instructions = "Press Y to play again or N to quit...";
+        Console.SetCursorPosition((WIDTH / 2) - (instructions.Length / 2), HEIGHT / 2 + 2);
+
+        switch (Console.ReadKey(true).Key)
+        {
+            case ConsoleKey.Y:
+                ClearString(str);
+                ClearString(instructions);
+                ResetBall();
+                leftScore = 0;
+                rightScore = 0;
+                running = true;
+                break;
+
+            case ConsoleKey.N:
+                Environment.Exit(-1);
+                break;
+        }
+
+    }
 }
