@@ -21,6 +21,7 @@ public static class Board
 
     private static bool isBallGoingDown = true;
     private static bool isBallGoingRight = false;
+    private static int ballAngle = 0;
 
     private static int rightScore = 0;
     private static int leftScore = 0;
@@ -79,7 +80,7 @@ public static class Board
         {
             if (ballY < HEIGHT)
             {
-                ballY++;
+                ballY += ballAngle;
             }
             else if (ballY == HEIGHT)
             {
@@ -90,7 +91,7 @@ public static class Board
         {
             if (ballY > 1)
             {
-                ballY--;
+                ballY -= ballAngle;
             }
             else if (ballY == 1)
             {
