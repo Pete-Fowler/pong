@@ -280,6 +280,7 @@ public static class Board
         Thread.Sleep(1000);
 
         ResetBall();
+        ResetPaddles();
 
         ClearString(str, (WIDTH / 2) - (str.Length / 2), HEIGHT / 2);
 
@@ -342,8 +343,7 @@ public static class Board
                 ClearString(scoreBoard, WIDTH / 2 - scoreBoard.Length / 2, HEIGHT + 2);
 
                 ClearPaddles();
-                leftPaddleHeight = HEIGHT / 2 - 2;
-                rightPaddleHeight = HEIGHT / 2 - 2;
+                ResetPaddles();
 
                 running = true;
                 break;
@@ -353,5 +353,11 @@ public static class Board
                 break;
         }
 
+    }
+
+    private static void ResetPaddles()
+    {
+        leftPaddleHeight = HEIGHT / 2 - 2;
+        rightPaddleHeight = HEIGHT / 2 - 2;
     }
 }
