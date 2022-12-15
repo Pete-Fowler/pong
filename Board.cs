@@ -68,10 +68,17 @@ public static class Board
     private static void DrawBall()
     {
         Console.SetCursorPosition(ballX, ballY);
-        Console.Write(ballTile);
-        Thread.Sleep(ballSpeed);
-        Console.SetCursorPosition(ballX, ballY);
-        Console.Write(" ");
+        if (1 < ballY && ballY < HEIGHT)
+        {
+            Console.Write(ballTile);
+            Thread.Sleep(ballSpeed);
+            Console.SetCursorPosition(ballX, ballY);
+            Console.Write(" ");
+        }
+        else
+        {
+            Thread.Sleep(ballSpeed);
+        }
     }
 
     private static void HandleBallAtBorders()

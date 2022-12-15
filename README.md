@@ -1,2 +1,3 @@
 # Summary
-This is a console pong game written in C#. The ball increases speed with each hit, and the ball angle
+This is a console Pong game written in C#. The ball increases speed with each 
+hit, and the ball angle changes depending on where it contacts a paddle.
