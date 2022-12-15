@@ -113,7 +113,7 @@ public static class Board
             }
             else if (ballX == WIDTH - 3)
             {
-                if (rightPaddleHeight <= ballY && ballY <= rightPaddleHeight + 5)
+                if (rightPaddleHeight <= ballY && ballY <= rightPaddleHeight + 4)
                 {
                     isBallGoingRight = !isBallGoingRight;
                     AdjustBallAngle("Right");
@@ -136,7 +136,7 @@ public static class Board
             }
             else if (ballX == 2)
             {
-                if (leftPaddleHeight <= ballY && ballY <= leftPaddleHeight + 5)
+                if (leftPaddleHeight <= ballY && ballY <= leftPaddleHeight + 4)
                 {
                     isBallGoingRight = !isBallGoingRight;
                     AdjustBallAngle("Left");
@@ -165,18 +165,42 @@ public static class Board
             paddleHeight = rightPaddleHeight;
         }
 
-        if (ballY == paddleHeight || ballY == paddleHeight + 5)
+        int ballDeltaPaddle = ballY - paddleHeight;
+
+        switch (ballDeltaPaddle)
         {
-            ballAngle = 2;
+            case 0:
+                ballAngle = 2;
+                isBallGoingDown = false;
+                break;
+            case 1:
+                ballAngle = 1;
+                isBallGoingDown = false;
+                break;
+            case 2:
+                ballAngle = 0;
+                break;
+            case 3:
+                ballAngle = 1;
+                isBallGoingDown = true;
+                break;
+            case 4:
+                ballAngle = 2;
+                isBallGoingDown = true;
+                break;
         }
-        else if (ballY == paddleHeight + 1 || ballY == paddleHeight + 4)
-        {
-            ballAngle = 1;
-        }
-        else if (ballY == paddleHeight + 2)
-        {
-            ballAngle = 0;
-        }
+        //if (ballY == paddleHeight || ballY == paddleHeight + 4)
+        //{
+        //    ballAngle = 2;
+        //}
+        //else if (ballY == paddleHeight + 1 || ballY == paddleHeight + 3)
+        //{
+        //    ballAngle = 1;
+        //}
+        //else if (ballY == paddleHeight + 2)
+        //{
+        //    ballAngle = 0;
+        //}
     }
 
     public static void Goal(string side)
