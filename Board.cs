@@ -18,6 +18,7 @@ public static class Board
     private static int ballY = HEIGHT / 2;
     private const char ballTile = 'O';
     private static int ballSpeed = 60;
+    private static bool isBallSpeedReduced = false;
 
     private static bool isBallGoingDown = true;
     private static bool isBallGoingRight = false;
@@ -27,6 +28,47 @@ public static class Board
     private static int leftScore = 0;
 
     private static bool running = true;
+
+    public static void HandleMovement()
+    {
+        Console.CursorVisible = false;
+        while (!Console.KeyAvailable && running)
+        {
+            AdjustBallSpeed();
+            DrawPaddles();
+            DrawBall();
+            HandleBallAtBorders();
+        }
+
+        switch (Console.ReadKey(true).Key)
+        {
+            case ConsoleKey.P:
+                if (rightPaddleHeight > 1)
+                {
+                    rightPaddleHeight--;
+                }
+                break;
+            case ConsoleKey.L:
+                if (rightPaddleHeight < HEIGHT - 4)
+                {
+                    rightPaddleHeight++;
+                }
+                break;
+            case ConsoleKey.Q:
+                if (leftPaddleHeight > 1)
+                {
+                    leftPaddleHeight--;
+                }
+                break;
+            case ConsoleKey.A:
+                if (leftPaddleHeight < HEIGHT - 4)
+                {
+                    leftPaddleHeight++;
+                }
+                break;
+        }
+        ClearPaddles();
+    }
 
     public static void DrawBoundary()
     {
@@ -259,46 +301,21 @@ public static class Board
         ballY = HEIGHT / 2;
         ballAngle = 0;
         ballSpeed = 60;
+        isBallSpeedReduced = false;
     }
 
-    public static void HandleMovement()
+    private static void AdjustBallSpeed()
     {
-        Console.CursorVisible = false;
-        while (!Console.KeyAvailable && running)
+        if (ballAngle == 2 && isBallSpeedReduced == false)
         {
-            DrawPaddles();
-            DrawBall();
-            HandleBallAtBorders();
+            ballSpeed *= 2;
+            isBallSpeedReduced = true;
         }
-
-        switch (Console.ReadKey(true).Key)
+        else if (ballAngle != 2 && isBallSpeedReduced == true)
         {
-            case ConsoleKey.P:
-                if (rightPaddleHeight > 1)
-                {
-                    rightPaddleHeight--;
-                }
-                break;
-            case ConsoleKey.L:
-                if (rightPaddleHeight < HEIGHT - 4)
-                {
-                    rightPaddleHeight++;
-                }
-                break;
-            case ConsoleKey.Q:
-                if (leftPaddleHeight > 1)
-                {
-                    leftPaddleHeight--;
-                }
-                break;
-            case ConsoleKey.A:
-                if (leftPaddleHeight < HEIGHT - 4)
-                {
-                    leftPaddleHeight++;
-                }
-                break;
+            ballSpeed /= 2;
+            isBallSpeedReduced = false;
         }
-        ClearPaddles();
     }
 
     private static void WinGame(string side)
